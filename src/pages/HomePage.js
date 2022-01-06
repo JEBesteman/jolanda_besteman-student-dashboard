@@ -1,16 +1,16 @@
 import React from "react";
-import { Data, assignments, allDifficulty, } from "../data/utils"
+import Chart from "../data/Chart";
 
-const Home = () => {
-    console.log(Data, assignments, allDifficulty, )
+const HomePage = () => {
     return (
         <div className="main-content">
             <h1>alles</h1>
             <p>table chart alle opdrachten</p>
             <p>line chart van alle gemiddelde van alle opdrachten</p>
             {/* chart en line */}
+            <Chart />
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default HomePage;

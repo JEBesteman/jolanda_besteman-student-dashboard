@@ -930,6 +930,8 @@ const assignmentRatingAverageWithLabels = assignmentRatingAverage.map(avg => ({
   )}, enjoymentRating: ${avg.enjoymentRating.toFixed(1)}`
 }));
 
+console.log("example", assignmentRatingAverageWithLabels)
+
 const chartExample = () => (
   <>
     <VictoryChart domainPadding={15} theme={wincTheme}>
@@ -943,6 +945,8 @@ const chartExample = () => (
           tickFormat={assignmentRatingAverageWithLabels.map(
             avg => avg.assignment
           )}
+          labels={assignmentRatingAverageWithLabels.map(
+            avg => avg.assignment)}
         />
         <VictoryBar
           labelComponent={<VictoryTooltip />}
@@ -953,6 +957,8 @@ const chartExample = () => (
           tickFormat={assignmentRatingAverageWithLabels.map(
             avg => avg.assignment
           )}
+          labels={assignmentRatingAverageWithLabels.map(
+            avg => avg.label)}
         />
       </VictoryGroup>
       <VictoryAxis
@@ -962,6 +968,7 @@ const chartExample = () => (
         tickFormat={assignmentRatingAverageWithLabels.map(
           avg => avg.assignment
         )}
+        
       />
       <VictoryAxis dependentAxis />
     </VictoryChart>
