@@ -2,7 +2,7 @@ import React from "react";
 import studentData from "./studentdata";
 
 const StudentChart = ({ filterStudent }) => {
-    // console.log(studentData);
+   
     const data = studentData;
     console.log(filterStudent); //goede naam wordt doorgegeven
     const studentName = filterStudent;
