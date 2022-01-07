@@ -1,14 +1,15 @@
 import React from "react";
 import studentData from "./studentdata";
+import { VictoryBar } from "victory";
 
 class Chart extends React.Component {
     constructor() {
-        super()
+        super();
         this.state = {
-          fun: true,
-          difficult: true
-        }
-      }
+            fun: true,
+            difficult: true,
+        };
+    }
 
     data = studentData;
     //unigue assignment names
@@ -19,20 +20,26 @@ class Chart extends React.Component {
             const assignmentData = this.data.filter(
                 (item) => assignment === item.assignment
             );
-            console.log(assignmentData)
+            console.log(assignmentData);
             const difficulty = assignmentData.map((d) => d.difficultyRating);
             const fun = assignmentData.map((f) => f.funRating);
-            console.log(fun)
+            console.log(fun);
             const totalDifficultPerAssignment = difficulty.reduce(
-                (accumulator, currentValue) => accumulator + currentValue, 0);
+                (accumulator, currentValue) => accumulator + currentValue,
+                0
+            );
             const totalFunPerAssignment = fun.reduce(
-                (accumulator, currentValue) => accumulator + currentValue, 0);
+                (accumulator, currentValue) => accumulator + currentValue,
+                0
+            );
 
-            const valueDifficult = totalDifficultPerAssignment / difficulty.length;
+            const valueDifficult =
+                totalDifficultPerAssignment / difficulty.length;
             const valueFun = totalFunPerAssignment / fun.length;
             const averageDifficultyRating = valueDifficult.toFixed(1);
             const averageFunRating = valueFun.toFixed(1);
-            console.log(averageDifficultyRating)
+            console.log(averageDifficultyRating);
+
             return {
                 assignment:
                     assignment.length > 8
@@ -43,10 +50,10 @@ class Chart extends React.Component {
                 funRating: Number(averageFunRating),
             };
         });
-        console.log(averagesAssignmentList)
+        console.log(averagesAssignmentList);
         return averagesAssignmentList;
     };
-    
+
     averageRatingAssigments = this.getAveragesAssignments();
 
     // Add label
@@ -58,34 +65,56 @@ class Chart extends React.Component {
             label: `Opdracht ${avg.assignment}, difficultyRating: ${avg.difficultyRating}, enjoymentRating: ${avg.funRating}`,
         })
     );
-    // console.log("chart", averageRatingAssigmentsWithLabels);
 
     handleChange = (event) => {
         const target = event.target.value;
-        if (target === "difficult"){
-            console.log("diff changed")
-            this.setState(prevState => ({difficult: !prevState.difficult}))
+        if (target === "difficult") {
+            console.log("diff changed");
+            this.setState((prevState) => ({ difficult: !prevState.difficult }));
         }
-        if (target === "fun"){
-            console.log("fun changed")
-            this.setState(prevState => ({fun: !prevState.fun}))
+        if (target === "fun") {
+            console.log("fun changed");
+            this.setState((prevState) => ({ fun: !prevState.fun }));
         }
-    }
+    };
 
     render() {
+        console.log(this.averageRatingAssigments);
         return (
             <div>
                 <p>chart</p>
-                {/* conditional rendering */}
-                {/* {this.state.difficult ? (<VictoryBar diff/>) : null */}
-                {/* {this.state.fun ? (<VictoryBar fun/>) : null */}
-            <div>
-                <input type="checkbox" onChange={this.handleChange} value="difficult" checked={this.state.difficult}/> Verwijder difficult
-                <br />
-                <input type="checkbox" onChange={this.handleChange} value="fun" checked={this.state.fun}/> Verwijder fun
+                <div className="chart">
+                    <VictoryBar
+                        data={this.averageRatingAssigments}
+                        // data accessor for x values
+                        x="assignment"
+                        // data accessor for y values
+                        y="diffultyRating"
+                    />
+                    {/* conditional rendering */}
+                    {/* {this.state.difficult ? (<VictoryBar diff/>) : null */}
+                    {/* {this.state.fun ? (<VictoryBar fun/>) : null */}
+                </div>
+                <div>
+                    <input
+                        type="checkbox"
+                        onChange={this.handleChange}
+                        value="difficult"
+                        checked={this.state.difficult}
+                    />{" "}
+                    Verwijder difficult
+                    <br />
+                    <input
+                        type="checkbox"
+                        onChange={this.handleChange}
+                        value="fun"
+                        checked={this.state.fun}
+                    />{" "}
+                    Verwijder fun
+                </div>
             </div>
-            </div>)
+        );
     }
-};
+}
 
 export default Chart;
