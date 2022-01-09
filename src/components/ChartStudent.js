@@ -1,16 +1,16 @@
 import React from "react";
 import {
     VictoryBar,
-    VictoryChart,
     VictoryAxis,
     VictoryGroup,
-    VictoryTooltip,
     VictoryLine,
-    VictoryZoomContainer,
+    VictoryChart,
     VictoryLabel,
+    VictoryTooltip,
+    VictoryZoomContainer,
 } from "victory";
 
-class Chart extends React.Component {
+class StudentChart3 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,14 +47,12 @@ class Chart extends React.Component {
                         {this.state.difficult ? (
                             <VictoryBar
                                 labelComponent={
-                                    <VictoryTooltip flyoutWidth={300} />
+                                    <VictoryTooltip flyoutWidth={275} />
                                 }
-                                data={
-                                    this.props.averageRatingAssigmentsWithLabels
-                                }
+                                data={this.props.studentDetailsWithLabels}
                                 x="assignment"
                                 y="difficultyRating"
-                                labels={this.props.averageRatingAssigmentsWithLabels.map(
+                                labels={this.props.studentDetailsWithLabels.map(
                                     (item) => item.labelDif
                                 )}
                                 cornerRadius={{ topLeft: 10, topRight: 10 }}
@@ -72,12 +70,10 @@ class Chart extends React.Component {
                                 labelComponent={
                                     <VictoryTooltip flyoutWidth={275} />
                                 }
-                                data={
-                                    this.props.averageRatingAssigmentsWithLabels
-                                }
+                                data={this.props.studentDetailsWithLabels}
                                 x="assignment"
                                 y="funRating"
-                                labels={this.props.averageRatingAssigmentsWithLabels.map(
+                                labels={this.props.studentDetailsWithLabels.map(
                                     (item) => item.labelFun
                                 )}
                                 cornerRadius={{ topLeft: 8, topRight: 8 }}
@@ -102,7 +98,7 @@ class Chart extends React.Component {
                                 strokeLinejoin: "round",
                             },
                         }}
-                        tickFormat={this.props.averageRatingAssigmentsWithLabels.map(
+                        tickFormat={this.props.studentDetailsWithLabels.map(
                             (item) => item.assignment
                         )}
                         tickLabelComponent={
@@ -174,7 +170,7 @@ class Chart extends React.Component {
                                 data: { stroke: "#004DFF" },
                                 parent: { border: "2px solid #ccc" },
                             }}
-                            data={this.props.averageRatingAssigments}
+                            data={this.props.studentDetails}
                             x="assignment"
                             y="difficultyRating"
                         />
@@ -185,7 +181,7 @@ class Chart extends React.Component {
                                 data: { stroke: "#FFAE00" },
                                 parent: { border: "2px solid #ccc" },
                             }}
-                            data={this.props.averageRatingAssigments}
+                            data={this.props.studentDetails}
                             x="assignment"
                             y="funRating"
                         />
@@ -201,7 +197,7 @@ class Chart extends React.Component {
                                 strokeLinejoin: "round",
                             },
                         }}
-                        tickFormat={this.props.averageRatingAssigments.map(
+                        tickFormat={this.props.studentDetails.map(
                             (item) => item.assignment
                         )}
                         tickLabelComponent={
@@ -228,4 +224,4 @@ class Chart extends React.Component {
     }
 }
 
-export default Chart;
+export default StudentChart3;

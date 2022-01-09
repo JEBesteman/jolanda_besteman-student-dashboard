@@ -2,7 +2,6 @@ import React from "react";
 import Chart from "../components/Chart";
 
 const HomePage = ({data}) => {
-    console.log("homepage", data)
 
     const assignmentList = [...new Set(data.map((item) => item.assignment))];
 
@@ -38,7 +37,6 @@ const HomePage = ({data}) => {
         return averagesAssignmentList;
     };
     const averageRatingAssigments = getAveragesAssignments();
-    console.log(averageRatingAssigments);
 
     // // Add label
     const averageRatingAssigmentsWithLabels = averageRatingAssigments.map(
@@ -50,13 +48,11 @@ const HomePage = ({data}) => {
             labelFun: `assignment ${avg.assignment}, enjoymentRating: ${avg.funRating}`,
         })
     );
-    console.log("chart", averageRatingAssigmentsWithLabels);
 
     return (
         <div className="main-content">
-            <h1>alles</h1>
-            <p>table chart alle opdrachten</p>
-            <p>line chart van alle gemiddelde van alle opdrachten</p>
+            <p>table chart en line chart van alle gemiddelde van alle opdrachten</p>
+            <p>scroll to zoom</p>
             <Chart averageRatingAssigments={averageRatingAssigments} averageRatingAssigmentsWithLabels={averageRatingAssigmentsWithLabels}/>
         </div>
     );

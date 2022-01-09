@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const StudentsPage = ({ students, data }) => {
-    console.log("studentPage", data)
+const StudentsPage = ({ students }) => {
+
     const studentLinks = students.map((student, index) => {
         const linkNav = `/students/${student.toString()}`;
         return (
