@@ -1,17 +1,17 @@
 import React from "react";
-import studentData from "./studentdata";
+// import studentData from "./studentdata";
 import {
     VictoryBar,
+    VictoryChart,
     VictoryAxis,
     VictoryGroup,
-    VictoryLine,
-    VictoryChart,
-    VictoryLabel,
     VictoryTooltip,
+    VictoryLine,
     VictoryZoomContainer,
+    VictoryLabel,
 } from "victory";
 
-class StudentChart3 extends React.Component {
+class Chart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,49 +20,60 @@ class StudentChart3 extends React.Component {
         };
     }
 
-    studentName = this.props.filterStudent;
-    //functie om fun en diff aan en uit te zetten..
-    data = studentData;
-    //hoe geeft ik filterStudent goed door???
+    // data = studentData;
+    // //unigue assignment names
+    // assignmentList = [...new Set(this.data.map((item) => item.assignment))];
 
-    assignmentList = [...new Set(this.data.map((item) => item.assignment))];
+    // getAveragesAssignments = () => {
+    //     const averagesAssignmentList = this.assignmentList.map((assignment) => {
+    //         const assignmentData = this.data.filter(
+    //             (item) => assignment === item.assignment
+    //         );
+    //         console.log(assignmentData);
+    //         const difficulty = assignmentData.map((d) => d.difficultyRating);
+    //         const fun = assignmentData.map((f) => f.funRating);
+    //         console.log(fun);
+    //         const totalDifficultPerAssignment = difficulty.reduce(
+    //             (accumulator, currentValue) => accumulator + currentValue,
+    //             0
+    //         );
+    //         const totalFunPerAssignment = fun.reduce(
+    //             (accumulator, currentValue) => accumulator + currentValue,
+    //             0
+    //         );
 
-    getStudentDetails = () => {
-        const studentFilter = this.data.filter(
-            (item) => item.student === this.studentName
-        );
-        console.log("filterstudent", studentFilter);
-        //nu assignments koppelen aan student met diff en fun rating
-        const studentListDetails = this.assignmentList.map((assignment) => {
-            const assignmentData = studentFilter.filter(
-                (item) => assignment === item.assignment
-            );
-            const difficulty = assignmentData.map((d) => d.difficultyRating);
-            const fun = assignmentData.map((f) => f.funRating);
-            console.log(difficulty);
-            return {
-                assignment:
-                    assignment.length > 8
-                        ? assignment.substring(0, assignment.indexOf(" "))
-                        : assignment,
-                difficultyRating: Number(difficulty[0]),
-                funRating: Number(fun[0]),
-            };
-        });
-        console.log(studentListDetails);
-        return studentListDetails;
-    };
+    //         const valueDifficult =
+    //             totalDifficultPerAssignment / difficulty.length;
+    //         const valueFun = totalFunPerAssignment / fun.length;
+    //         const averageDifficultyRating = valueDifficult.toFixed(1);
+    //         const averageFunRating = valueFun.toFixed(1);
+    //         console.log(averageDifficultyRating);
 
-    studentDetails = this.getStudentDetails();
+    //         return {
+    //             assignment:
+    //                 assignment.length > 8
+    //                     ? assignment.substring(0, assignment.indexOf(" "))
+    //                     : assignment,
+    //             difficultyRating: Number(averageDifficultyRating),
+    //             funRating: Number(averageFunRating),
+    //         };
+    //     });
+    //     console.log(averagesAssignmentList);
+    //     return averagesAssignmentList;
+    // };
 
-    // Add label
-    studentDetailsWithLabels = this.studentDetails.map((avg) => ({
-        assignment: avg.assignment,
-        difficultyRating: avg.difficultyRating,
-        funRating: avg.funRating,
-        labelDif: `assignment ${avg.assignment}, difficultyRating: ${avg.difficultyRating}`,
-        labelFun: `assignment ${avg.assignment}, enjoymentRating: ${avg.funRating}`,
-    }));
+    // averageRatingAssigments = this.getAveragesAssignments();
+
+    // // Add label
+    // averageRatingAssigmentsWithLabels = this.averageRatingAssigments.map(
+    //     (avg) => ({
+    //         assignment: avg.assignment,
+    //         difficultyRating: avg.difficultyRating,
+    //         funRating: avg.funRating,
+    //         labelDif: `assignment ${avg.assignment}, difficultyRating: ${avg.difficultyRating}`,
+    //         labelFun: `assignment ${avg.assignment}, enjoymentRating: ${avg.funRating}`,
+    //     })
+    // );
 
     handleChange = (event) => {
         const target = event.target.value;
@@ -77,12 +88,12 @@ class StudentChart3 extends React.Component {
     };
 
     render() {
-        console.log(this.studentName);
-
+        console.log(this.props.averageRatingAssigments);
+        console.log(this.props.averageRatingAssigmentsWithLabels);
         return (
             <div>
-                <div>
-                    <h3>{this.studentName}</h3>
+                <p>chart</p>
+                <div className="chart">
                     <VictoryChart
                         domainPadding={20}
                         width={1200}
@@ -98,12 +109,14 @@ class StudentChart3 extends React.Component {
                             {this.state.difficult ? (
                                 <VictoryBar
                                     labelComponent={
-                                        <VictoryTooltip flyoutWidth={400} />
+                                        <VictoryTooltip flyoutWidth={300} />
                                     }
-                                    data={this.studentDetailsWithLabels}
+                                    data={
+                                        this.props.averageRatingAssigmentsWithLabels
+                                    }
                                     x="assignment"
                                     y="difficultyRating"
-                                    labels={this.studentDetailsWithLabels.map(
+                                    labels={this.props.averageRatingAssigmentsWithLabels.map(
                                         (item) => item.labelDif
                                     )}
                                     cornerRadius={{ topLeft: 10, topRight: 10 }}
@@ -119,12 +132,14 @@ class StudentChart3 extends React.Component {
                             {this.state.fun ? (
                                 <VictoryBar
                                     labelComponent={
-                                        <VictoryTooltip flyoutWidth={275} />
+                                        <VictoryTooltip flyoutWidth={400} />
                                     }
-                                    data={this.studentDetailsWithLabels}
+                                    data={
+                                        this.props.averageRatingAssigmentsWithLabels
+                                    }
                                     x="assignment"
                                     y="funRating"
-                                    labels={this.studentDetailsWithLabels.map(
+                                    labels={this.props.averageRatingAssigmentsWithLabels.map(
                                         (item) => item.labelFun
                                     )}
                                     cornerRadius={{ topLeft: 8, topRight: 8 }}
@@ -149,7 +164,7 @@ class StudentChart3 extends React.Component {
                                     strokeLinejoin: "round",
                                 },
                             }}
-                            tickFormat={this.studentDetailsWithLabels.map(
+                            tickFormat={this.props.averageRatingAssigmentsWithLabels.map(
                                 (item) => item.assignment
                             )}
                             tickLabelComponent={
@@ -197,7 +212,7 @@ class StudentChart3 extends React.Component {
                                 data: { stroke: "#004DFF" },
                                 parent: { border: "2px solid #ccc" },
                             }}
-                            data={this.studentDetails}
+                            data={this.props.averageRatingAssigments}
                             x="assignment"
                             y="difficultyRating"
                         /> ) : null }
@@ -207,10 +222,10 @@ class StudentChart3 extends React.Component {
                                 data: { stroke: "#FFAE00" },
                                 parent: { border: "2px solid #ccc" },
                             }}
-                            data={this.studentDetails}
+                            data={this.props.averageRatingAssigments}
                             x="assignment"
                             y="funRating"
-                        /> ) : null }
+                        /> ) :  null }
                         <VictoryAxis
                             style={{
                                 ticks: {
@@ -222,7 +237,7 @@ class StudentChart3 extends React.Component {
                                     strokeLinejoin: "round",
                                 },
                             }}
-                            tickFormat={this.studentDetails.map(
+                            tickFormat={this.props.averageRatingAssigments.map(
                                 (item) => item.assignment
                             )}
                             tickLabelComponent={
@@ -247,11 +262,11 @@ class StudentChart3 extends React.Component {
                         value="fun"
                         checked={this.state.fun}
                     />{" "}
-                    Show Fun
+                    Show Funfactor
                 </div>
             </div>
         );
     }
 }
 
-export default StudentChart3;
+export default Chart;

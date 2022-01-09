@@ -9,14 +9,15 @@ import StudentsPage from './pages/StudentsPage';
 function App() {
   //all names of students in alphabetic order --> links 
   const nameStudentsList = [...new Set(studentData.map(name => name.student))].sort()
-  
+  const data = studentData;
+  console.log("data", data)
   return (
       <div className="App">
           <Navbar />
           <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/students" element={<StudentsPage students={nameStudentsList}/>} />
-              <Route path="/students/:studentName" element={<StudentDetail />} />
+              <Route path="/" element={<HomePage data={data} />} />
+              <Route path="/students" element={<StudentsPage data={data} students={nameStudentsList}/>} />
+              <Route path="/students/:studentName" element={<StudentDetail data={data}/>} />
           </Routes>
     </div>
   );

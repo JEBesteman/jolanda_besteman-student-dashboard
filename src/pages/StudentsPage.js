@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const StudentsPage = ({ students }) => {
+const StudentsPage = ({ students, data }) => {
+    console.log("studentPage", data)
     const studentLinks = students.map((student, index) => {
         const linkNav = `/students/${student.toString()}`;
         return (
@@ -14,7 +15,7 @@ const StudentsPage = ({ students }) => {
     return (
         <div>
             <h1>All students</h1>
-            <ul>{studentLinks}</ul>
+            <ul className="grid">{studentLinks}</ul>
         </div>
     );
 };
