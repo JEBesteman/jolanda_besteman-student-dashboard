@@ -1,8 +1,7 @@
 import React from "react";
 import Chart from "../components/Chart";
 
-const HomePage = ({data}) => {
-
+const HomePage = ({ data }) => {
     const assignmentList = [...new Set(data.map((item) => item.assignment))];
 
     const getAveragesAssignments = () => {
@@ -38,22 +37,25 @@ const HomePage = ({data}) => {
     };
     const averageRatingAssigments = getAveragesAssignments();
 
-    // // Add label
+    // Add label
     const averageRatingAssigmentsWithLabels = averageRatingAssigments.map(
         (avg) => ({
             assignment: avg.assignment,
             difficultyRating: avg.difficultyRating,
             funRating: avg.funRating,
-            labelDif: `assignment ${avg.assignment}, difficultyRating: ${avg.difficultyRating}`,
-            labelFun: `assignment ${avg.assignment}, enjoymentRating: ${avg.funRating}`,
+            labelDif: `assignment ${avg.assignment}, \n difficultyRating: ${avg.difficultyRating}`,
+            labelFun: `assignment ${avg.assignment}, \n funRating: ${avg.funRating}`,
         })
     );
 
     return (
         <div className="main-content">
-            <p>table chart en line chart van alle gemiddelde van alle opdrachten</p>
-            <p>scroll to zoom</p>
-            <Chart averageRatingAssigments={averageRatingAssigments} averageRatingAssigmentsWithLabels={averageRatingAssigmentsWithLabels}/>
+            <Chart
+                averageRatingAssigments={averageRatingAssigments}
+                averageRatingAssigmentsWithLabels={
+                    averageRatingAssigmentsWithLabels
+                }
+            />
         </div>
     );
 };

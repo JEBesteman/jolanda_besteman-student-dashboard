@@ -32,6 +32,8 @@ class Chart extends React.Component {
     render() {
         return (
             <div className="chartContainer">
+                <h2>Overview User-story</h2>
+                <p>Scroll to zoom</p>
                 <VictoryChart
                     domainPadding={20}
                     width={1200}
@@ -47,7 +49,7 @@ class Chart extends React.Component {
                         {this.state.difficult ? (
                             <VictoryBar
                                 labelComponent={
-                                    <VictoryTooltip flyoutWidth={300} />
+                                    <VictoryTooltip flyoutWidth={150} />
                                 }
                                 data={
                                     this.props.averageRatingAssigmentsWithLabels
@@ -57,7 +59,7 @@ class Chart extends React.Component {
                                 labels={this.props.averageRatingAssigmentsWithLabels.map(
                                     (item) => item.labelDif
                                 )}
-                                cornerRadius={{ topLeft: 10, topRight: 10 }}
+                                cornerRadius={{ topLeft: 8, topRight: 8 }}
                                 style={{
                                     data: {
                                         width: 15,
@@ -70,7 +72,7 @@ class Chart extends React.Component {
                         {this.state.fun ? (
                             <VictoryBar
                                 labelComponent={
-                                    <VictoryTooltip flyoutWidth={275} />
+                                    <VictoryTooltip flyoutWidth={150} />
                                 }
                                 data={
                                     this.props.averageRatingAssigmentsWithLabels
@@ -125,37 +127,26 @@ class Chart extends React.Component {
                 </VictoryChart>
                 <br />
                 <div className="chartText">
-                    <div
-                        style={{
-                            backgroundColor: "#004DFF",
-                            color: "white",
-                            borderRadius: "20px",
-                            width: "150px",
-                        }}
-                    >
+                    <label className="labelChartTextDif">
                         <input
+                            className="accent"
                             type="checkbox"
                             onChange={this.handleChange}
                             value="difficult"
-                            checked={this.state.difficult}
+                            defaultChecked
                         />{" "}
                         Show Difficulty
-                    </div>
-                    <div
-                        style={{
-                            backgroundColor: "#FFAE00",
-                            borderRadius: "20px",
-                            width: "150px",
-                        }}
-                    >
+                    </label>
+                    <label className="labelChartTextFun">
                         <input
+                            className="accent"
                             type="checkbox"
                             onChange={this.handleChange}
                             value="fun"
-                            checked={this.state.fun}
+                            defaultChecked
                         />{" "}
                         Show Funfactor
-                    </div>
+                    </label>
                 </div>
                 <VictoryChart
                     domainPadding={20}

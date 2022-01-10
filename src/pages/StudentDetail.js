@@ -38,14 +38,14 @@ const StudentDetail = ({ data }) => {
         assignment: avg.assignment,
         difficultyRating: avg.difficultyRating,
         funRating: avg.funRating,
-        labelDif: `assignment ${avg.assignment}, difficultyRating: ${avg.difficultyRating}`,
-        labelFun: `assignment ${avg.assignment}, enjoymentRating: ${avg.funRating}`,
+        labelDif: `assignment ${avg.assignment}, \n difficultyRating: ${avg.difficultyRating}`,
+        labelFun: `assignment ${avg.assignment}, \n funRating: ${avg.funRating}`,
     }));
 
     return (
         <div>
             <h2>Student: {studentName}</h2>
-            <p>scroll to zoom</p>
+            <p>Scroll to zoom</p>
             <StudentChart
                 studentDetails={studentDetails}
                 studentDetailsWithLabels={studentDetailsWithLabels}
