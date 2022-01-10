@@ -210,7 +210,7 @@ class Chart extends React.Component {
                                 strokeLinecap: "round",
                                 strokeLinejoin: "round",
                             },
-                            grid: { stroke: "rgb(221, 221, 221)" },
+                            grid: { stroke: "rgb(173, 173, 173)" },
                         }}
                     />
                 </VictoryChart>
