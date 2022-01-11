@@ -30,6 +30,7 @@ class StudentChart extends React.Component {
     };
 
     render() {
+        const {studentDetailsWithLabels, studentDetails} = this.props;
         return (
             <div className="chartContainer">
                 <VictoryChart
@@ -49,10 +50,10 @@ class StudentChart extends React.Component {
                                 labelComponent={
                                     <VictoryTooltip flyoutWidth={150} />
                                 }
-                                data={this.props.studentDetailsWithLabels}
+                                data={studentDetailsWithLabels}
                                 x="assignment"
                                 y="difficultyRating"
-                                labels={this.props.studentDetailsWithLabels.map(
+                                labels={studentDetailsWithLabels.map(
                                     (item) => item.labelDif
                                 )}
                                 cornerRadius={{ topLeft: 8, topRight: 8 }}
@@ -70,10 +71,10 @@ class StudentChart extends React.Component {
                                 labelComponent={
                                     <VictoryTooltip flyoutWidth={150} />
                                 }
-                                data={this.props.studentDetailsWithLabels}
+                                data={studentDetailsWithLabels}
                                 x="assignment"
                                 y="funRating"
-                                labels={this.props.studentDetailsWithLabels.map(
+                                labels={studentDetailsWithLabels.map(
                                     (item) => item.labelFun
                                 )}
                                 cornerRadius={{ topLeft: 8, topRight: 8 }}
@@ -98,7 +99,7 @@ class StudentChart extends React.Component {
                                 strokeLinejoin: "round",
                             },
                         }}
-                        tickFormat={this.props.studentDetailsWithLabels.map(
+                        tickFormat={studentDetailsWithLabels.map(
                             (item) => item.assignment
                         )}
                         tickLabelComponent={
@@ -159,7 +160,7 @@ class StudentChart extends React.Component {
                                 data: { stroke: "#004DFF" },
                                 parent: { border: "2px solid #ccc" },
                             }}
-                            data={this.props.studentDetails}
+                            data={studentDetails}
                             x="assignment"
                             y="difficultyRating"
                         />
@@ -170,7 +171,7 @@ class StudentChart extends React.Component {
                                 data: { stroke: "#FFAE00" },
                                 parent: { border: "2px solid #ccc" },
                             }}
-                            data={this.props.studentDetails}
+                            data={studentDetails}
                             x="assignment"
                             y="funRating"
                         />
@@ -186,7 +187,7 @@ class StudentChart extends React.Component {
                                 strokeLinejoin: "round",
                             },
                         }}
-                        tickFormat={this.props.studentDetails.map(
+                        tickFormat={studentDetails.map(
                             (item) => item.assignment
                         )}
                         tickLabelComponent={

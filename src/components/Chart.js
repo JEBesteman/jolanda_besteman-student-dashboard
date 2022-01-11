@@ -30,6 +30,7 @@ class Chart extends React.Component {
     };
 
     render() {
+        const {averageRatingAssigmentsWithLabels, averageRatingAssigments} = this.props;
         return (
             <div className="chartContainer">
                 <h2>Overview User-story</h2>
@@ -52,11 +53,11 @@ class Chart extends React.Component {
                                     <VictoryTooltip flyoutWidth={150} />
                                 }
                                 data={
-                                    this.props.averageRatingAssigmentsWithLabels
+                                    averageRatingAssigmentsWithLabels
                                 }
                                 x="assignment"
                                 y="difficultyRating"
-                                labels={this.props.averageRatingAssigmentsWithLabels.map(
+                                labels={averageRatingAssigmentsWithLabels.map(
                                     (item) => item.labelDif
                                 )}
                                 cornerRadius={{ topLeft: 8, topRight: 8 }}
@@ -75,11 +76,11 @@ class Chart extends React.Component {
                                     <VictoryTooltip flyoutWidth={150} />
                                 }
                                 data={
-                                    this.props.averageRatingAssigmentsWithLabels
+                                    averageRatingAssigmentsWithLabels
                                 }
                                 x="assignment"
                                 y="funRating"
-                                labels={this.props.averageRatingAssigmentsWithLabels.map(
+                                labels={averageRatingAssigmentsWithLabels.map(
                                     (item) => item.labelFun
                                 )}
                                 cornerRadius={{ topLeft: 8, topRight: 8 }}
@@ -104,7 +105,7 @@ class Chart extends React.Component {
                                 strokeLinejoin: "round",
                             },
                         }}
-                        tickFormat={this.props.averageRatingAssigmentsWithLabels.map(
+                        tickFormat={averageRatingAssigmentsWithLabels.map(
                             (item) => item.assignment
                         )}
                         tickLabelComponent={
@@ -165,7 +166,7 @@ class Chart extends React.Component {
                                 data: { stroke: "#004DFF" },
                                 parent: { border: "2px solid #ccc" },
                             }}
-                            data={this.props.averageRatingAssigments}
+                            data={averageRatingAssigments}
                             x="assignment"
                             y="difficultyRating"
                         />
@@ -176,7 +177,7 @@ class Chart extends React.Component {
                                 data: { stroke: "#FFAE00" },
                                 parent: { border: "2px solid #ccc" },
                             }}
-                            data={this.props.averageRatingAssigments}
+                            data={averageRatingAssigments}
                             x="assignment"
                             y="funRating"
                         />
@@ -192,7 +193,7 @@ class Chart extends React.Component {
                                 strokeLinejoin: "round",
                             },
                         }}
-                        tickFormat={this.props.averageRatingAssigments.map(
+                        tickFormat={averageRatingAssigments.map(
                             (item) => item.assignment
                         )}
                         tickLabelComponent={
